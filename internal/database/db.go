@@ -8,6 +8,7 @@ import (
 
 	"github.com/jackc/pgx/v4"
 	"github.com/joho/godotenv"
+	"golang.org/x/crypto/bcrypt"
 )
 
 var DbConnection *pgx.Conn
@@ -47,6 +48,31 @@ func RegisterUser(username, email, password string) error {
 	if err != nil {
 		return fmt.Errorf("error inserting user: %v", err)
 	}
+
+	return nil
+}
+
+func LoginUser(username, password string) error {
+	type user struct {
+		Username string
+		Email    string
+		Password string
+	}
+
+	loggedInUser := user{}
+	err := DbConnection.QueryRow(context.Background(), "SELECT username,email,password FROM USERS WHERE username = $1", username).Scan(&loggedInUser.Username, &loggedInUser.Email, &loggedInUser.Password)
+
+	if err != nil {
+		log.Fatal("Invalid Credentials")
+	}
+
+	err = bcrypt.CompareHashAndPassword([]byte(loggedInUser.Password), []byte(password))
+
+	if err != nil {
+		log.Fatal("Invalid Credentials")
+	}
+
+	fmt.Printf("Logged in succesfully")
 
 	return nil
 }

@@ -14,6 +14,7 @@ var rootCmd = &cobra.Command{
 }
 
 func Execute() {
+	rootCmd.AddCommand(loginCmd)
 	rootCmd.AddCommand(registerCmd)
 	if err := rootCmd.Execute(); err != nil {
 		fmt.Println(err)
