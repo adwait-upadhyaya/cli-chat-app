@@ -75,3 +75,11 @@ func LoginUser(username, password string) error {
 
 	return nil
 }
+
+func LogMessage(message string, sender int) error {
+	_, err := DbConnection.Exec(context.Background(), "INSERT INTO MESSAGES (user_id, content) VALUES ($1, $2)", sender, message)
+	if err != nil {
+		return fmt.Errorf("error logging chat: %v", err)
+	}
+	return nil
+}
