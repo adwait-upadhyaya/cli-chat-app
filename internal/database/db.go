@@ -29,7 +29,6 @@ func Connect() (*pgx.Conn, error) {
 	if err != nil {
 		return nil, err
 	}
-	fmt.Println("COnnected to Pg DB")
 	return conn, nil
 }
 

@@ -3,6 +3,7 @@ package cmd
 import (
 	"log"
 
+	"github.com/adwait-upadhyaya/cli-chat-app/internal/client"
 	"github.com/adwait-upadhyaya/cli-chat-app/internal/database"
 	"github.com/spf13/cobra"
 )
@@ -18,5 +19,7 @@ var loginCmd = &cobra.Command{
 		if err != nil {
 			log.Fatal("Error occured during login")
 		}
+
+		client.InitClient(username)
 	},
 }
