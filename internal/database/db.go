@@ -10,6 +10,8 @@ import (
 	"github.com/joho/godotenv"
 )
 
+var DbConnection *pgx.Conn
+
 func Connect() (*pgx.Conn, error) {
 	err := godotenv.Load(".env")
 	if err != nil {
@@ -28,4 +30,23 @@ func Connect() (*pgx.Conn, error) {
 	}
 	fmt.Println("COnnected to Pg DB")
 	return conn, nil
+}
+
+func init() {
+	var err error
+	DbConnection, err = Connect()
+
+	if err != nil {
+		log.Fatal("Cannot connect to DB")
+	}
+}
+
+func RegisterUser(username, email, password string) error {
+	_, err := DbConnection.Exec(context.Background(), "INSERT INTO USERS (username, email, password) VALUES ($1, $2, $3)", username, email, password)
+
+	if err != nil {
+		return fmt.Errorf("error inserting user: %v", err)
+	}
+
+	return nil
 }
