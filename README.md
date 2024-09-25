@@ -48,6 +48,11 @@ This is a command-line interface (CLI) chat application built using Go, PostgreS
      DB_NAME=your_database_name
      ```
 
+4. **Run Migraion files**
+   ```bash
+   migrate -path database/migrations -database "postgres://<username>:<password>@localhost:5432/<db_name>?sslmode=disable" up
+   ```
+
 ## Usage
 
 The CLI application provides commands to register users, log in, and start chatting.
