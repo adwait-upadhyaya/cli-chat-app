@@ -9,13 +9,15 @@ import (
 	socketio_client "github.com/zhouhui8915/go-socket.io-client"
 )
 
-func InitClient(username string) {
+func InitClient(username string, userId int) {
 
 	opts := &socketio_client.Options{
 		Transport: "websocket",
 		Query:     make(map[string]string),
 	}
 	opts.Query["user"] = username
+	opts.Query["userId"] = fmt.Sprintf("%v", userId)
+
 	uri := "http://localhost:8000/"
 
 	client, err := socketio_client.NewClient(uri, opts)

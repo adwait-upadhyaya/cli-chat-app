@@ -20,6 +20,8 @@ var loginCmd = &cobra.Command{
 			log.Fatal("Error occured during login")
 		}
 
-		client.InitClient(username)
+		userId := database.GetUserId(username)
+
+		client.InitClient(username, userId)
 	},
 }

@@ -83,3 +83,15 @@ func LogMessage(message string, sender int) error {
 	}
 	return nil
 }
+
+func GetUserId(username string) int {
+	var userId int
+	err := DbConnection.QueryRow(context.Background(), "SELECT id from USERS where username = $1", username).Scan(&userId)
+
+	if err != nil {
+		log.Fatalf("Couldnt get id")
+	}
+
+	return userId
+
+}

@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"net/url"
 	"strconv"
 
 	"github.com/adwait-upadhyaya/cli-chat-app/internal/database"
@@ -23,7 +24,11 @@ func InitServer() {
 
 	server.OnEvent("/", "message", func(s socketio.Conn, msg string) {
 		fmt.Printf("Message recieved from %s:  %s \n", s.ID(), msg)
-		intId, _ := strconv.Atoi(s.ID())
+
+		query := s.URL().RawQuery
+		parsedQuery, _ := url.ParseQuery(query)
+
+		intId, _ := strconv.Atoi(parsedQuery.Get("userId"))
 		database.LogMessage(msg, intId)
 		server.BroadcastToRoom("/", "chat_room", "message", msg)
 	})
