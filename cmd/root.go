@@ -17,6 +17,7 @@ func Execute() {
 	rootCmd.AddCommand(loginCmd)
 	rootCmd.AddCommand(registerCmd)
 	rootCmd.AddCommand(serverCmd)
+	// rootCmd.AddCommand(migrateCmd)
 	if err := rootCmd.Execute(); err != nil {
 		fmt.Println(err)
 		os.Exit(1)
