@@ -48,13 +48,7 @@ This is a command-line interface (CLI) chat application built using Go, PostgreS
      DB_NAME=your_database_name
      ```
 
-4. **Run database migrations**:
-
-   Ensure the required tables for users and chat history are set up in PostgreSQL.
-
-   You can manually create the tables or use a tool like DBeaver to execute SQL commands.
-
-5. **Run the application**:
+4. **Run the application**:
 
    ```bash
    go run main.go
