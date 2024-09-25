@@ -43,7 +43,7 @@ func InitClient(username string, userId int) {
 	for {
 		data, _, _ := reader.ReadLine()
 		command := string(data)
-		client.Emit("message", fmt.Sprintf("%s: %s", username, command))
+		client.Emit("message", command)
 		// log.Printf("sent message:%v\n", command)
 	}
 }

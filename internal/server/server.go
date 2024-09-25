@@ -23,12 +23,12 @@ func InitServer() {
 	})
 
 	server.OnEvent("/", "message", func(s socketio.Conn, msg string) {
-		fmt.Printf("Message recieved from %s:  %s \n", s.ID(), msg)
 
 		query := s.URL().RawQuery
 		parsedQuery, _ := url.ParseQuery(query)
 
 		intId, _ := strconv.Atoi(parsedQuery.Get("userId"))
+		fmt.Printf("Message recieved from %s:  %s \n", parsedQuery.Get("user"), msg)
 		database.LogMessage(msg, intId)
 		server.BroadcastToRoom("/", "chat_room", "message", msg)
 	})
