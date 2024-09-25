@@ -28,8 +28,10 @@ func InitServer() {
 		parsedQuery, _ := url.ParseQuery(query)
 
 		intId, _ := strconv.Atoi(parsedQuery.Get("userId"))
-		fmt.Printf("Message recieved from %s:  %s \n", parsedQuery.Get("user"), msg)
 		database.LogMessage(msg, intId)
+
+		msg = fmt.Sprintf("Message recieved from %s:  %s \n", parsedQuery.Get("user"), msg)
+
 		server.BroadcastToRoom("/", "chat_room", "message", msg)
 	})
 
