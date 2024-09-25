@@ -48,36 +48,30 @@ This is a command-line interface (CLI) chat application built using Go, PostgreS
      DB_NAME=your_database_name
      ```
 
-4. **Run the application**:
-
-   ```bash
-   go run main.go
-   ```
-
 ## Usage
 
 The CLI application provides commands to register users, log in, and start chatting.
 
-### 1. Register a new user
+### 1. Running the server
+
+```bash
+go run main.go server
+```
+
+### 2. Register a new user
 
 ```bash
 go run main.go register <username> <email> <password>
 ```
 
-### 2. Login with an existing user
+### 3. Login with an existing user
 
 ```bash
 go run main.go login <userame> <password>
 ```
 
-### 3. Start Chatting
+### 4. Start Chatting
 
 After logging in, you can send and receive messages from other users logged into the chat application. Messages are broadcast to all connected users in real-time.
-
-### 4. Running the server
-
-```bash
-go run main.go server
-```
 
 This will start the Socket.io server at localhost:8000
