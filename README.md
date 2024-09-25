@@ -29,7 +29,7 @@ This is a command-line interface (CLI) chat application built using Go, PostgreS
 1. **Clone the repository**:
 
    ```bash
-   git clone https://github.com/your-username/cli-chat-app.git
+   git clone https://github.com/adwait-upadhyaya/cli-chat-app.git
    cd cli-chat-app
    ```
 
