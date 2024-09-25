@@ -33,7 +33,7 @@ func InitClient(username string, userId int) {
 		log.Printf("Connected to chat server\n")
 	})
 	client.On("message", func(msg string) {
-		log.Printf("sent message:%v\n", msg)
+		log.Printf("%v\n", msg)
 	})
 	client.On("disconnection", func() {
 		log.Printf("Disconnected from server\n")
